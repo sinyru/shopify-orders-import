@@ -89,10 +89,14 @@ export class CsvImportComponent implements OnInit {
           return obj;
         }, obj)).map((i) => obj[i]);
         for(let i=0;i<results.length;i++) {
-          this.http.post(environment.ordersUrl, {'order': results[i]}).toPromise().then((data)=>console.log(data));
+          this.http.post(environment.ordersUrl, {'order': results[i]}).toPromise().then((data)=>{
+            console.log(data)
+            if (i === results.length-1) {
+              this.router.navigate(['message']);
+              this.spinner.hide();
+            }
+          });
         }
-        this.router.navigate(['message']);
-        this.spinner.hide();
       }
     });
   }
