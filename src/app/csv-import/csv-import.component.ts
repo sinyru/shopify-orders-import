@@ -95,6 +95,12 @@ export class CsvImportComponent implements OnInit {
               this.router.navigate(['message']);
               this.spinner.hide();
             }
+          })
+          .catch((err)=>{
+            if (i === results.length-1) {
+              this.router.navigate(['message']);
+              this.spinner.hide();
+            }
           });
         }
       }
